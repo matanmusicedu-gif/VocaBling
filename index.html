@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="theme-color" content="#6C63FF" />
+  <meta name="description" content="Your personal English-Hebrew vocabulary companion" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+  <meta name="apple-mobile-web-app-title" content="VocaBling" />
+  <link rel="manifest" href="manifest.json" />
+  <link rel="icon" href="icons/icon-192.png" />
+  <link rel="apple-touch-icon" href="icons/icon-192.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/styles.css" />
+  <title>VocaBling ✨</title>
+</head>
+<body>
+
+<div id="app">
+
+  <!-- ============================================================
+       SCREEN: HOME
+       ============================================================ -->
+  <section id="screen-home" class="screen active scrollable">
+
+    <!-- Hero header -->
+    <div class="home-hero">
+      <div class="home-logo">
+        <div class="logo-icon"><img src="icons/icon.svg" alt="VocaBling" style="width:36px;height:36px;border-radius:8px;"></div>
+        <h1>Voca<span>Bling</span></h1>
+      </div>
+      <div class="stats-row">
+        <div class="stat-card">
+          <div class="stat-value" id="home-word-count">0</div>
+          <div class="stat-label">Words</div>
+        </div>
+        <div class="stat-card streak-live" id="streak-card">
+          <div class="stat-value" id="home-streak">0</div>
+          <div class="stat-label">Day Streak 🔥</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-value" id="home-mastered">0</div>
+          <div class="stat-label">Mastered</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="home-body">
+
+      <!-- Word of the Day -->
+      <div class="wotd-card" id="wotd-card">
+        <div class="wotd-label">⭐ Word of the Day</div>
+        <div class="wotd-word" id="wotd-word">—</div>
+        <div class="wotd-hebrew" id="wotd-hebrew">—</div>
+        <div class="wotd-definition" id="wotd-def">Add some words to see your Word of the Day!</div>
+      </div>
+
+      <!-- Action buttons -->
+      <div class="action-grid">
+        <button class="action-btn purple wide" id="btn-add-home">
+          <div class="action-btn-icon">➕</div>
+          <div>
+            <div class="action-btn-text">Add Word</div>
+            <div class="action-btn-sub">Grow your vocabulary</div>
+          </div>
+        </button>
+        <button class="action-btn coral" id="btn-practice-home">
+          <div class="action-btn-icon">🎮</div>
+          <div class="action-btn-text">Practice</div>
+          <div class="action-btn-sub">Quiz yourself</div>
+        </button>
+        <button class="action-btn teal" id="btn-words-home">
+          <div class="action-btn-icon">📚</div>
+          <div class="action-btn-text">Word Bank</div>
+          <div class="action-btn-sub">Browse words</div>
+        </button>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ============================================================
+       SCREEN: ADD WORD
+       ============================================================ -->
+  <section id="screen-add" class="screen scrollable">
+    <div class="screen-header">
+      <button class="btn-back" id="add-back">←</button>
+      <h2 id="add-screen-title">Add New Word</h2>
+    </div>
+
+    <form class="add-form" id="add-word-form" autocomplete="off">
+      <input type="hidden" id="edit-word-id" value="" />
+
+      <div class="field-group">
+        <label class="field-label" for="input-english">
+          English Word <span class="field-required">*</span>
+        </label>
+        <input
+          class="field-input large-input"
+          type="text"
+          id="input-english"
+          placeholder="e.g. ebullient"
+          required
+          autocapitalize="none"
+          autocorrect="off"
+          spellcheck="false"
+        />
+      </div>
+
+      <div class="field-group">
+        <label class="field-label" for="input-hebrew">
+          Hebrew Translation <span class="field-required">*</span>
+        </label>
+        <input
+          class="field-input rtl-input"
+          type="text"
+          id="input-hebrew"
+          placeholder="תרגום לעברית"
+          dir="rtl"
+          lang="he"
+          required
+        />
+      </div>
+
+      <div class="field-group">
+        <label class="field-label" for="input-definition">Definition <span style="font-weight:500;opacity:.7">(optional)</span></label>
+        <textarea
+          class="field-input"
+          id="input-definition"
+          rows="3"
+          placeholder="e.g. cheerful and full of energy"
+        ></textarea>
+      </div>
+
+      <div class="field-group">
+        <label class="field-label" for="input-example">Example Sentence <span style="font-weight:500;opacity:.7">(optional)</span></label>
+        <textarea
+          class="field-input"
+          id="input-example"
+          rows="3"
+          placeholder="e.g. She was so ebullient that everyone smiled"
+        ></textarea>
+      </div>
+
+      <div class="field-group">
+        <label class="field-label">Category / Tags <span style="font-weight:500;opacity:.7">(optional)</span></label>
+        <div class="tags-input-row" id="preset-tags">
+          <!-- populated by JS -->
+        </div>
+        <div style="display:flex;gap:8px;margin-top:8px;">
+          <input
+            class="field-input"
+            type="text"
+            id="input-custom-tag"
+            placeholder="Custom tag..."
+            style="font-size:.9rem;padding:10px 14px;"
+          />
+          <button type="button" id="btn-add-tag" style="
+            background:var(--purple-lt);color:var(--purple);
+            border-radius:var(--radius-sm);padding:10px 14px;
+            font-weight:800;font-size:.9rem;white-space:nowrap;
+          ">+ Add</button>
+        </div>
+        <div class="tags-input-row" id="selected-tags-display" style="margin-top:6px;">
+          <!-- selected tags shown here -->
+        </div>
+      </div>
+
+      <button type="submit" class="btn-save" id="btn-save-word">
+        💾 Save Word
+      </button>
+    </form>
+  </section>
+
+  <!-- ============================================================
+       SCREEN: WORD BANK
+       ============================================================ -->
+  <section id="screen-words" class="screen">
+    <div class="words-toolbar">
+      <div class="search-bar">
+        <span class="search-icon">🔍</span>
+        <input
+          type="search"
+          id="words-search"
+          placeholder="Search words..."
+          autocapitalize="none"
+          autocorrect="off"
+          spellcheck="false"
+        />
+      </div>
+      <div class="filter-chips" id="filter-chips">
+        <button class="filter-chip active" data-tag="all">All</button>
+        <!-- dynamic tags added by JS -->
+      </div>
+    </div>
+
+    <div class="words-list scrollable" id="words-list" style="flex:1;">
+      <!-- populated by JS -->
+    </div>
+  </section>
+
+  <!-- ============================================================
+       SCREEN: WORD DETAIL
+       ============================================================ -->
+  <section id="screen-detail" class="screen scrollable">
+    <div class="screen-header">
+      <button class="btn-back" id="detail-back">←</button>
+      <h2>Word Details</h2>
+      <button id="btn-edit-header" style="
+        background:var(--purple-lt);color:var(--purple);
+        border-radius:var(--radius-sm);padding:6px 14px;
+        font-weight:800;font-size:.85rem;
+      ">Edit</button>
+    </div>
+
+    <div class="detail-hero">
+      <div class="detail-english" id="detail-english">—</div>
+      <div class="detail-hebrew" id="detail-hebrew">—</div>
+      <div class="detail-tags" id="detail-tags"></div>
+    </div>
+
+    <div class="detail-body">
+      <div class="detail-stats">
+        <div class="detail-stat">
+          <div class="detail-stat-val" id="detail-correct">0</div>
+          <div class="detail-stat-lbl">Correct</div>
+        </div>
+        <div class="detail-stat">
+          <div class="detail-stat-val" id="detail-incorrect">0</div>
+          <div class="detail-stat-lbl">Wrong</div>
+        </div>
+        <div class="detail-stat">
+          <div class="detail-stat-val" id="detail-accuracy">—</div>
+          <div class="detail-stat-lbl">Accuracy</div>
+        </div>
+      </div>
+
+      <div class="detail-section" id="detail-def-section">
+        <div class="detail-section-label">Definition</div>
+        <div class="detail-section-content" id="detail-definition">—</div>
+      </div>
+
+      <div class="detail-section" id="detail-ex-section">
+        <div class="detail-section-label">Example</div>
+        <div class="detail-section-content italic" id="detail-example">—</div>
+      </div>
+
+      <div class="detail-section">
+        <div class="detail-section-label">Added</div>
+        <div class="detail-section-content color-muted" id="detail-added">—</div>
+      </div>
+
+      <div class="detail-actions">
+        <button class="btn-practice-word" id="btn-practice-this">
+          🎮 Practice this word
+        </button>
+        <button class="btn-edit-word" id="btn-edit-word">
+          ✏️ Edit
+        </button>
+        <button class="btn-delete-word" id="btn-delete-word">
+          🗑️ Delete
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       SCREEN: PRACTICE / QUIZ
+       ============================================================ -->
+  <section id="screen-practice" class="screen">
+
+    <div class="practice-header">
+      <button class="btn-back" id="practice-back">←</button>
+      <div class="mode-switcher" id="mode-switcher">
+        <button class="mode-btn active" data-mode="flashcard">🃏 Flash</button>
+        <button class="mode-btn" data-mode="mc">🎯 Choice</button>
+        <button class="mode-btn" data-mode="fitb">✏️ Fill</button>
+      </div>
+      <div class="streak-badge" id="quiz-streak-badge">🔥 <span id="quiz-streak-num">0</span></div>
+    </div>
+
+    <div class="quiz-progress-wrap" id="quiz-progress-wrap">
+      <div class="quiz-progress-header">
+        <span id="quiz-q-num">Question 1 of 10</span>
+        <span id="quiz-score-display">Score: 0</span>
+      </div>
+      <div class="quiz-progress-bar">
+        <div class="quiz-progress-fill" id="quiz-progress-fill" style="width:0%"></div>
+      </div>
+    </div>
+
+    <!-- Quiz content — rendered dynamically -->
+    <div class="quiz-area scrollable" id="quiz-area" style="flex:1;">
+      <!-- populated by JS -->
+    </div>
+
+  </section>
+
+  <!-- ============================================================
+       SCREEN: SETTINGS
+       ============================================================ -->
+  <section id="screen-settings" class="screen scrollable">
+    <div class="screen-header">
+      <h2>Settings</h2>
+    </div>
+
+    <div class="settings-body">
+
+      <!-- About -->
+      <div class="about-card">
+        <div class="about-logo">✨</div>
+        <div class="about-name">VocaBling</div>
+        <div class="about-version">Version 1.0.0</div>
+        <div class="about-desc">Your personal English-Hebrew vocabulary companion. Learn, practice, and grow your vocabulary every day.</div>
+      </div>
+
+      <!-- Appearance -->
+      <div class="settings-section-title">Appearance</div>
+      <div class="settings-group">
+        <div class="settings-item" id="settings-theme">
+          <div class="settings-item-icon">🌙</div>
+          <div class="settings-item-text">
+            <div class="settings-item-title">Dark Mode</div>
+            <div class="settings-item-sub">Easy on the eyes</div>
+          </div>
+          <div class="toggle-switch" id="theme-toggle"></div>
+        </div>
+      </div>
+
+      <!-- Data -->
+      <div class="settings-section-title">Data</div>
+      <div class="settings-group">
+        <div class="settings-item" id="settings-export">
+          <div class="settings-item-icon">📤</div>
+          <div class="settings-item-text">
+            <div class="settings-item-title">Export Words</div>
+            <div class="settings-item-sub">Save your vocabulary as a JSON file</div>
+          </div>
+          <div class="settings-item-arrow">›</div>
+        </div>
+        <div class="settings-item" id="settings-import">
+          <div class="settings-item-icon">📥</div>
+          <div class="settings-item-text">
+            <div class="settings-item-title">Import Words</div>
+            <div class="settings-item-sub">Load words from a JSON file</div>
+          </div>
+          <div class="settings-item-arrow">›</div>
+        </div>
+        <input type="file" id="import-file-input" accept=".json" style="display:none" />
+      </div>
+
+      <!-- Danger zone -->
+      <div class="settings-section-title">Danger Zone</div>
+      <div class="settings-group">
+        <div class="settings-item danger" id="settings-clear">
+          <div class="settings-item-icon">🗑️</div>
+          <div class="settings-item-text">
+            <div class="settings-item-title">Clear All Data</div>
+            <div class="settings-item-sub">Delete all words and reset app</div>
+          </div>
+          <div class="settings-item-arrow">›</div>
+        </div>
+      </div>
+
+      <!-- Stats -->
+      <div class="settings-section-title">Statistics</div>
+      <div class="settings-group">
+        <div class="settings-item" style="cursor:default;">
+          <div class="settings-item-icon">📊</div>
+          <div class="settings-item-text">
+            <div class="settings-item-title">Total Words</div>
+          </div>
+          <div style="font-weight:900;color:var(--purple)" id="settings-word-count">0</div>
+        </div>
+        <div class="settings-item" style="cursor:default;">
+          <div class="settings-item-icon">🎯</div>
+          <div class="settings-item-text">
+            <div class="settings-item-title">Total Correct</div>
+          </div>
+          <div style="font-weight:900;color:var(--teal)" id="settings-correct-count">0</div>
+        </div>
+        <div class="settings-item" style="cursor:default;">
+          <div class="settings-item-icon">🔥</div>
+          <div class="settings-item-text">
+            <div class="settings-item-title">Current Streak</div>
+          </div>
+          <div style="font-weight:900;color:var(--yellow)" id="settings-streak">0 days</div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ============================================================
+       BOTTOM NAVIGATION
+       ============================================================ -->
+  <nav id="bottom-nav">
+    <button class="nav-btn active" data-screen="home">
+      <span class="nav-icon">🏠</span>
+      <span>Home</span>
+    </button>
+    <button class="nav-btn" data-screen="practice">
+      <span class="nav-icon">🎮</span>
+      <span>Practice</span>
+    </button>
+    <button class="nav-btn" data-screen="words">
+      <span class="nav-icon">📚</span>
+      <span>Words</span>
+    </button>
+    <button class="nav-btn" data-screen="settings">
+      <span class="nav-icon">⚙️</span>
+      <span>Settings</span>
+    </button>
+  </nav>
+
+</div><!-- /#app -->
+
+<!-- Toast container -->
+<div id="toast-container"></div>
+
+<script src="js/app.js"></script>
+</body>
+</html>

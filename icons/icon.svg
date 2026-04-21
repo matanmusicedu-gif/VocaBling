@@ -1,0 +1,110 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 192 192">
+  <defs>
+    <radialGradient id="bg" cx="45%" cy="40%" r="70%">
+      <stop offset="0%" stop-color="#6C63FF"/>
+      <stop offset="55%" stop-color="#3B34C4"/>
+      <stop offset="100%" stop-color="#1A1570"/>
+    </radialGradient>
+    <radialGradient id="eye" cx="35%" cy="35%" r="65%">
+      <stop offset="0%" stop-color="#D4860A"/>
+      <stop offset="100%" stop-color="#6A3800"/>
+    </radialGradient>
+    <radialGradient id="sheen" cx="32%" cy="28%" r="55%">
+      <stop offset="0%" stop-color="#1e2a5a" stop-opacity="0.55"/>
+      <stop offset="100%" stop-color="#0a0a1a" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+
+  <!-- Background -->
+  <rect width="192" height="192" rx="40" fill="url(#bg)"/>
+
+  <!-- Throat / chest feathers (behind head) -->
+  <ellipse cx="70" cy="166" rx="62" ry="36" fill="#0a0a1a"/>
+
+  <!-- Main head -->
+  <circle cx="82" cy="82" r="64" fill="#0a0a1a"/>
+
+  <!-- Blue-black iridescent sheen on head -->
+  <circle cx="82" cy="82" r="64" fill="url(#sheen)"/>
+
+  <!-- ── BEAK ── -->
+
+  <!-- Mouth interior — warm orange so the open beak reads clearly -->
+  <path d="M 136 73
+           C 155 69, 176 73, 182 81
+           C 174 86, 156 87, 136 83 Z"
+        fill="#B84A0A"/>
+
+  <!-- Upper mandible — hooked, slightly lighter than head -->
+  <path d="M 134 63
+           C 154 54, 182 60, 188 74
+           C 186 81, 174 86, 156 85
+           C 142 84, 134 78, 134 69 Z"
+        fill="#161626"/>
+
+  <!-- Top-edge highlight (the silvery ridge in the photo) -->
+  <path d="M 134 63 C 154 54, 182 60, 188 74 C 180 68, 158 60, 134 65 Z"
+        fill="#282840" opacity="0.65"/>
+
+  <!-- Lower mandible -->
+  <path d="M 134 84
+           C 150 86, 166 90, 170 98
+           C 160 104, 145 102, 134 95 Z"
+        fill="#131322"/>
+
+  <!-- ── EYE ── -->
+  <circle cx="110" cy="73" r="13"  fill="#180e00"/>
+  <circle cx="110" cy="73" r="11"  fill="url(#eye)"/>
+  <circle cx="110" cy="73" r="5.5" fill="#100800"/>
+  <!-- catchlight -->
+  <circle cx="107" cy="70" r="2.2" fill="white" opacity="0.9"/>
+
+  <!-- ── FEATHER TEXTURE ── -->
+
+  <!-- Crown / top of head -->
+  <path d="M 44 55 C 58 44, 76 47, 79 59"  stroke="#18183a" stroke-width="1.6" fill="none" opacity="0.65"/>
+  <path d="M 34 73 C 48 60, 66 63, 67 76"  stroke="#18183a" stroke-width="1.4" fill="none" opacity="0.55"/>
+  <path d="M 32 92 C 46 80, 62 83, 62 96"  stroke="#18183a" stroke-width="1.3" fill="none" opacity="0.45"/>
+
+  <!-- Throat feathers (shaggy, like the photo) -->
+  <path d="M 36 118 C 52 107, 70 110, 70 122" stroke="#14142a" stroke-width="2.2" fill="none" opacity="0.8"/>
+  <path d="M 32 133 C 50 120, 70 124, 68 137" stroke="#14142a" stroke-width="2"   fill="none" opacity="0.7"/>
+  <path d="M 30 148 C 50 135, 68 138, 65 152" stroke="#14142a" stroke-width="1.8" fill="none" opacity="0.6"/>
+  <path d="M 56 112 C 72 102, 88 107, 86 120" stroke="#14142a" stroke-width="2"   fill="none" opacity="0.7"/>
+  <path d="M 52 128 C 68 116, 86 121, 83 135" stroke="#14142a" stroke-width="1.7" fill="none" opacity="0.6"/>
+  <path d="M 50 143 C 66 131, 84 136, 80 150" stroke="#14142a" stroke-width="1.5" fill="none" opacity="0.5"/>
+
+  <!-- ── BLING ── -->
+
+  <!-- Gold diamond top-right -->
+  <g transform="translate(163,26)">
+    <polygon points="0,-13 12,0 0,13 -12,0" fill="#FFD93D"/>
+    <polygon points="0,-13 12,0  0,0"        fill="#FFF5A0"/>
+    <polygon points="0,0   12,0  0,13 -12,0" fill="#C89A00"/>
+    <polygon points="0,-13 -12,0 0,0"        fill="#E8C000" opacity="0.5"/>
+  </g>
+
+  <!-- Big 4-pointed sparkle — top left -->
+  <g stroke="#FFD93D" stroke-linecap="round" fill="none">
+    <line x1="27" y1="28" x2="27" y2="47" stroke-width="2.8"/>
+    <line x1="18" y1="37" x2="36" y2="37" stroke-width="2.8"/>
+    <line x1="21" y1="30" x2="33" y2="44" stroke-width="1.6" opacity="0.6"/>
+    <line x1="33" y1="30" x2="21" y2="44" stroke-width="1.6" opacity="0.6"/>
+  </g>
+  <circle cx="27" cy="37" r="2.5" fill="white"/>
+
+  <!-- Medium sparkle — bottom right -->
+  <g stroke="#FFD93D" stroke-linecap="round" fill="none" opacity="0.8">
+    <line x1="166" y1="155" x2="166" y2="165" stroke-width="2.2"/>
+    <line x1="161" y1="160" x2="171" y2="160" stroke-width="2.2"/>
+    <line x1="162" y1="156" x2="170" y2="164" stroke-width="1.3" opacity="0.5"/>
+    <line x1="170" y1="156" x2="162" y2="164" stroke-width="1.3" opacity="0.5"/>
+  </g>
+  <circle cx="166" cy="160" r="2" fill="white" opacity="0.85"/>
+
+  <!-- Tiny sparkle — top centre -->
+  <g stroke="#FFD93D" stroke-linecap="round" fill="none" opacity="0.5">
+    <line x1="100" y1="16" x2="100" y2="23" stroke-width="1.5"/>
+    <line x1="96"  y1="19" x2="104" y2="19" stroke-width="1.5"/>
+  </g>
+</svg>
